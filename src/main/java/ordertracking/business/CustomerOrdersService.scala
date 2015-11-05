@@ -10,16 +10,10 @@ import scala.collection.mutable.Set
  */
 class CustomerOrdersService {
 
-  def getNewOrders {
-    val customerOrder = new CustomerOrderDAO
-    val customerOrders: Set[Order] = customerOrder.getNewOrders()
-    val it: Iterator[Order] = customerOrders.iterator
-    while (it.hasNext) {
-      val order: Order = it.next()
-      println(order.getId + " " + order.getIsPaid + " " + order.getDatePlaced)
-    }
+  def getNewOrders: Set[Order] = {
+    val customerOrderDao = new CustomerOrderDAO
+    customerOrderDao.getNewOrders()
   }
-
 }
 
 /**
@@ -29,6 +23,11 @@ object CustomerOrdersService {
 
   def main(args: Array[String]): Unit = {
     val cos = new CustomerOrdersService
-    cos.getNewOrders
+    val orders: Set[Order] = cos.getNewOrders
+    val it: Iterator[Order] = orders.iterator
+    while (it.hasNext) {
+      val order: Order = it.next()
+      println("OrderId = " + order.getId + ", HasBeenPaidFor = " + order.getIsPaid + ", OrderDate = " + order.getDatePlaced)
+    }
   }
 }

@@ -37,4 +37,32 @@ class CustomerOrderDAO {
     orders.getOrders()
   }
 
+    def getOrderLineDetails(): Set[OrderLine] = {
+    val sql: String = 
+
+    "select col.iditem, col.quantity, item.name, item.description, item.noinstock from customerorderline col, item where col.iditem = item.idItem and col.idCustomerOrder = 2"
+    Database.connect()
+
+    //Instantiate our collections class
+    val orders: Orders = new Orders
+    
+    //Get data from database
+    val rs: ResultSet = Database.executeQuery(sql)
+    
+    //Iterate over data and populate the collection
+    while (rs.next()) {
+      val id = rs.getInt("idCustomerOrder")
+      val isPaid = rs.getBoolean("isPaid")
+      val datePlaced = rs.getDate("datePlaced")
+      val order: Order = new Order(id, isPaid, datePlaced)
+      orders.addOrder(order)
+    }
+    //Tidy up
+    rs.close();
+    Database.disconnect()
+    
+    //Return
+    orders.getOrders()
+  }
+
 }
