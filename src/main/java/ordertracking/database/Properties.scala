@@ -1,5 +1,4 @@
 package ordertracking.database
-import java.sql.Connection
 /**
  * @author BaldevGill
  */
