@@ -3,6 +3,7 @@ package ordertracking.database
 import java.sql.Connection
 import java.sql.DriverManager
 import java.sql.ResultSet
+import java.sql.Statement
 
 /**
  * @author BaldevGill
@@ -14,9 +15,6 @@ object Database extends Properties {
   def connect() = {
     val driver = "com.mysql.jdbc.Driver"
     val url = "jdbc:mysql://localhost/mydb"
-
-    // there's probably a better way to do this
-    // var connection: Connection = null
 
     try {
       // make the connection
@@ -36,13 +34,13 @@ object Database extends Properties {
   }
 
   def executeQuery(sql: String): ResultSet = {
-    val statement = connection.createStatement()
+    val statement:Statement = connection.createStatement()
     statement.executeQuery(sql)
   }
 
-  def executeUpdate(sql:String) = {
-     val statement = connection.createStatement()
-     statement.executeUpdate(sql)
-     statement.close();
+  def executeUpdate(sql: String) = {
+    val statement:Statement = connection.createStatement()
+    statement.executeUpdate(sql)
+    statement.close();
   }
 }
