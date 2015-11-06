@@ -16,14 +16,11 @@ object GetOrderDetails {
     val orderNo: Int = 1
 
     val cos = new CustomerOrdersService
-    val orderLines: Set[OrderLine] = cos.getOrderLines(orderNo)
-    val it: Iterator[OrderLine] = orderLines.iterator
+    val orderLines: Map[Int, OrderLine] = cos.getOrderLines(orderNo)
     println()
     println("Items for OrderNo:" + orderNo + " :-")
-    while (it.hasNext) {
-      val orderLine: OrderLine = it.next()
-      println("idItem = " + orderLine.getIdItem + ", name = " + orderLine.getName + ", description = " + orderLine.getDescription + ", Quantity required = " + orderLine.getQuantity + ", Number in stock = " + orderLine.getNoinstock)
+    for ((key, orderLine) <- orderLines) {
+      println("OrderID: " + orderLine.getOrderNo + " -> " + "idItem = " + orderLine.getIdItem + ", name = " + orderLine.getName + ", description = " + orderLine.getDescription + ", Quantity required = " + orderLine.getQuantity + ", Number in stock = " + orderLine.getNoinstock)
     }
   }
 }
-

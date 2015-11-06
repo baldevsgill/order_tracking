@@ -6,7 +6,11 @@ import java.sql.Date
  *
  * Value Object for order line details
  */
-class OrderLine(idItem: Int, quantity: Int, name: String, description: String, noinstock: Int) {
+class OrderLine(orderNo: Int, idItem: Int, quantity: Int, name: String, description: String, noinstock: Int) {
+
+  def getOrderNo: Int = {
+    orderNo
+  }
 
   def getIdItem: Int = {
     idItem

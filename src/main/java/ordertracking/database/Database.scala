@@ -8,7 +8,7 @@ import java.sql.Statement
 /**
  * @author BaldevGill
  *
- * Class that deals with database connections and executing simple queries
+ * Class that deals with database connections and executes queries
  */
 object Database extends Properties {
 
