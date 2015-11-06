@@ -1,4 +1,4 @@
-package ordertracking.database.data
+package ordertracking.database.vo
 import java.sql.Date
 
 /**

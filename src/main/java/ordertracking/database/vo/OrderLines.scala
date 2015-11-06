@@ -1,18 +1,18 @@
-package ordertracking.database.data
-import scala.collection.mutable.Set
+package ordertracking.database.vo
+import scala.collection.mutable.LinkedHashSet
 /**
  * @author BaldevGill
  *
  * Value Object for holding a collection of Order Line details
  */
 class OrderLines {
-  val orderLines: Set[OrderLine] = Set()
+  val orderLines: LinkedHashSet[OrderLine] = LinkedHashSet()
 
   def addOrderLine(orderLine: OrderLine): Unit = {
     orderLines += orderLine
   }
 
-  def getOrderLines(): Set[OrderLine] = {
+  def getOrderLines(): LinkedHashSet[OrderLine] = {
     orderLines
   }
 }

@@ -1,6 +1,7 @@
 package ordertracking.business
 import ordertracking.database.dao.CustomerOrderDAO
-import ordertracking.database.data.Order
+import ordertracking.database.vo.Order
+import ordertracking.database.vo.OrderLine
 import scala.collection.mutable.Set
 
 /**
@@ -14,20 +15,9 @@ class CustomerOrdersService {
     val customerOrderDao = new CustomerOrderDAO
     customerOrderDao.getNewOrders()
   }
-}
 
-/**
- * Tester class for the Customer orders Business Service
- */
-object CustomerOrdersService {
-
-  def main(args: Array[String]): Unit = {
-    val cos = new CustomerOrdersService
-    val orders: Set[Order] = cos.getNewOrders
-    val it: Iterator[Order] = orders.iterator
-    while (it.hasNext) {
-      val order: Order = it.next()
-      println("OrderId = " + order.getId + ", HasBeenPaidFor = " + order.getIsPaid + ", OrderDate = " + order.getDatePlaced)
-    }
+  def getOrderLines(orderNo: Int): Set[OrderLine] = {
+    val customerOrderDao = new CustomerOrderDAO
+    customerOrderDao.getOrderLineDetails(orderNo)
   }
 }
