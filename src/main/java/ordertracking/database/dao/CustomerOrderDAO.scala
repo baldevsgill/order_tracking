@@ -12,15 +12,17 @@ class CustomerOrderDAO {
 
   def getNewOrders(): Map[Int, Order] = {
     val sql: String =
-      "select idCustomerOrder, isPaid, datePlaced from customerorder co, customerorderstatus cos where co.idcustomerorderstatus = cos.idcustomerorderstatus and cos.status = 'NEW' order by idCustomerOrder"
+      "select co.idCustomerOrder, cos.status, u.forename AS customerName, co.isPaid, co.datePlaced from customerorder co, customerorderstatus cos, customer c, user u where co.idcustomerorderstatus = cos.idcustomerorderstatus  and co.idCustomer = c.idUser and c.idUser = u.idUser and cos.status IN ('NEW', 'ASSIGNED') order by idCustomerOrder";
     Database.connect()
     val rs: ResultSet = Database.executeQuery(sql)
     def loop(m: Map[Int, Order]): Map[Int, Order] = {
       if (rs.next) {
         val id = rs.getInt("idCustomerOrder")
+        val status = rs.getString("status")
+        val customerName = rs.getString("customerName")
         val isPaid = rs.getBoolean("isPaid")
         val datePlaced = rs.getDate("datePlaced")
-        val order: Order = new Order(id, isPaid, datePlaced)
+        val order: Order = new Order(id, status, customerName, isPaid, datePlaced)
         loop(m + (id -> order))
       } else {
         rs.close()

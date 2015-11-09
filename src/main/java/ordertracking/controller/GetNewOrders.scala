@@ -15,8 +15,15 @@ object GetNewOrders {
     val orders: Map[Int, Order] = cos.getNewOrders
     println()
     for ((key, order) <- orders) {
-      val isPaidYesNo: String = if (order.getIsPaid) "Yes" else "No"
-      println("OrderId = " + order.getId + ", HasBeenPaidFor = " + isPaidYesNo + ", OrderDate = " + order.getDatePlaced)
+      val sb: StringBuilder = new StringBuilder()
+      sb ++= "OrderId = " + order.idCustomerOrder.get + "\n"
+      sb ++= "Status = " + order.status.get + "\n"
+      sb ++= "CustomerName = " + order.customerName.get + "\n"
+      val isPaidYesNo: String = if (order.isPaid.get) "Yes" else "No"
+      sb ++= "OrderPaidFor? = " + isPaidYesNo + "\n"
+      sb ++= "DatePlaced = " + order.datePlaced.get + "\n"
+      println(sb)
     }
   }
 }
+    
