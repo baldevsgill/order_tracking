@@ -20,7 +20,7 @@ object GetOrderDetails {
     println()
     println("Items for OrderNo:" + orderNo + " :-")
     for ((key, orderLine) <- orderLines) {
-      println("OrderID: " + orderLine.getOrderNo + " -> " + "idItem = " + orderLine.getIdItem + ", name = " + orderLine.getName + ", description = " + orderLine.getDescription + ", Quantity required = " + orderLine.getQuantity + ", Number in stock = " + orderLine.getNoinstock)
+      println("OrderID: " + orderLine.orderNo.get + " -> " + "idItem = " + orderLine.idItem.get + ", name = " + orderLine.name.get + ", description = " + orderLine.description.get + ", Quantity required = " + orderLine.quantity.get + ", Number in stock = " + orderLine.noinstock.get)
     }
   }
 }

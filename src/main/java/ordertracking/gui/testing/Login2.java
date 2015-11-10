@@ -1,4 +1,4 @@
-package ordertracking.controller.gui;
+package ordertracking.gui.testing;
 
 import ordertracking.database.dao.UserDAO;
 import ordertracking.database.vo.User;
@@ -22,7 +22,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 @SuppressWarnings("restriction")
-public class Login extends Application {
+public class Login2 extends Application {
 
 	public static void main(String[] args) {
 		launch(args);

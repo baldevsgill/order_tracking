@@ -21,7 +21,7 @@ class CustomerOrderDAO {
         val status = rs.getString("status")
         val customerName = rs.getString("customerName")
         val isPaid = rs.getBoolean("isPaid")
-        val datePlaced = rs.getDate("datePlaced")
+        val datePlaced = rs.getString("datePlaced")
         val order: Order = new Order(id, status, customerName, isPaid, datePlaced)
         loop(m + (id -> order))
       } else {
