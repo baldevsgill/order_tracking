@@ -13,7 +13,7 @@ object GetOrderDetails {
 
   def main(args: Array[String]): Unit = {
 
-    val orderNo: Int = 1
+    val orderNo: Int = 2
 
     val cos = new CustomerOrdersService
     val orderLines: Map[Int, OrderLine] = cos.getOrderLines(orderNo)

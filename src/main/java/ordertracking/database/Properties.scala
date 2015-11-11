@@ -5,4 +5,5 @@ package ordertracking.database
 trait Properties {
   val username: String = "root"
   val password: String = "a035"
+  val mongoDatabaseName:String = "mydb"
 }
