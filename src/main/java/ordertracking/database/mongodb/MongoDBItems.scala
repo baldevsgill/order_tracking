@@ -36,7 +36,12 @@ class MongoDBItems(database: MongoDB) {
   def addItemsToMongoDB(items: ListBuffer[Item]) {
     for (item <- items) {
       val itemObject = MongoDBObject("idItem" -> item.idItem, "name" -> item.name, "description" -> item.description, "noinstock" -> item.noinstock);
-      itemsCollection.insert(itemObject)
+      if (itemsCollection.findOne(itemObject).isEmpty) {
+        itemsCollection.insert(itemObject)
+        println("Item: " + item.idItem + " inserted")
+      } else {
+        println("Item: " + item.idItem + " already exists. Nothing inserted.")
+      }
     }
   }
 
@@ -84,12 +89,12 @@ class MongoDBItems(database: MongoDB) {
 object Test {
   def main(args: Array[String]): Unit = {
     val mongoDBItems = new MongoDBItems(MongoDBDatabase.database)
-    //mongoDBItems.loadItems
+    mongoDBItems.loadItems
 
     //def item: Item = mongoDBItems.getItem(2)
     //println(item)
 
-    mongoDBItems.deleteItem(5)
+    //mongoDBItems.deleteItem(5)
 
   }
 }
